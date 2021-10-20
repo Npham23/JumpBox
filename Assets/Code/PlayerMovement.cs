@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && isGrounded)
             {
+
             // isJumping = true;
             jumpValue += 1f;
             //jumpTimeCounter = jumpTime;
@@ -93,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if(isGrounded)
             {
+                createDust();
                 rb.velocity = new Vector2(moveInput * speed, jumpValue);
                 jumpValue = 0.0f;
             }
