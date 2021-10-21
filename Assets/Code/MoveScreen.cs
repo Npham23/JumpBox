@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class MoveScreen : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject virtualCamera;
+
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player") && !other.isTrigger)
+        {
+            virtualCamera.SetActive(true);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void OnTriggerExit2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player") && !other.isTrigger)
+        {
+            virtualCamera.SetActive(false);
+        }
     }
 }
+

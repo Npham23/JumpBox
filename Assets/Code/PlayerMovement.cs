@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //========= Setting Variables =============
 
+    public GameObject Player;
     private Rigidbody2D rb;
 
     // basic stats for player movement
@@ -42,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource bouncingSound;
     private bool landSound = false;
 
+    // Changing Cameras
+    public Camera mainCamera;
+    public Camera secondCamera;
+
+
     void Start()
     {
 
@@ -59,6 +65,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // moving cameras, Q goes down and E goes up
+        if (Input.GetKey(KeyCode.E))
+        {
+            switchToSecondCamera();
+        }
+        else if (Input.GetKey(KeyCode.Q))
+        {
+            switchToMainCamera();
+        }
 
         // checks if the player is grounded within a certain radius
         isGrounded = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.2f, transform.position.y - 0.5f),
@@ -211,6 +226,16 @@ public class PlayerMovement : MonoBehaviour
         Fireworks.Stop();
     }
 
+    private void switchToSecondCamera()
+    {
+        mainCamera.enabled = false;
+        secondCamera.enabled = true;
+    }
 
+    private void switchToMainCamera()
+    {
+        mainCamera.enabled = true;
+        secondCamera.enabled = false;
+    }
 
 }
