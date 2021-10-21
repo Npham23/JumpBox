@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JumpFox.unity
     guid: 43df0e374099d3e4a9e1b32040faff54
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: b7150e587293560458b86fbd5ef7fe01
   m_configObjects: {}
