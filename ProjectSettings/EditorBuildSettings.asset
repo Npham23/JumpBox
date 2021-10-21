@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 1237f274781b7c544bc235833af0d31c
+  - enabled: 1
+    path: Assets/Scenes/JumpFox.unity
+    guid: 43df0e374099d3e4a9e1b32040faff54
   m_configObjects: {}

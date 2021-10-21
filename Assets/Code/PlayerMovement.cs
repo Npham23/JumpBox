@@ -161,13 +161,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
+    // making sure the jump value goes back to its starting point
     void resetJump()
     {
         isJumping = false;
         jumpValue = startingJump;
     }
 
+    // face left by rotating
     public void faceLeft()
     {
         if (left)
@@ -178,6 +179,8 @@ public class PlayerMovement : MonoBehaviour
         left = true;
         right = false;
     }
+
+    // face right by rotating
     public void faceRight()
     {
         if (right)
