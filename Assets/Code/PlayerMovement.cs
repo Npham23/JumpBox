@@ -58,7 +58,10 @@ public class PlayerMovement : MonoBehaviour
     public Camera threeCamera;
 
     // Next level
+    public bool isGameOver = false;
     public GameObject nextLevel;
+
+    public LayerMask gameOver;
 
 
     void Start()
@@ -102,6 +105,10 @@ public class PlayerMovement : MonoBehaviour
         isThirdCamera = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
        new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), thirdCamera);
 
+        isGameOver = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
+       new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), gameOver);
+
+
         if (isUpper) 
         {
             switchToSecondCamera();
@@ -119,6 +126,12 @@ public class PlayerMovement : MonoBehaviour
             switchToThirdCamera();
 
         }
+
+        if(isGameOver)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        }
+
 
 
             if (isVictory)
