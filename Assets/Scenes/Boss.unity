@@ -3154,7 +3154,10 @@ GameObject:
   m_Component:
   - component: {fileID: 487063731}
   - component: {fileID: 487063732}
-  m_Layer: 0
+  - component: {fileID: 487063733}
+  - component: {fileID: 487063735}
+  - component: {fileID: 487063734}
+  m_Layer: 14
   m_Name: Crow Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3170,7 +3173,7 @@ Transform:
   m_GameObject: {fileID: 487063730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 1966006336}
   m_RootOrder: 0
@@ -3223,6 +3226,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &487063733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487063730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a382cb5fadf9da44a847dd86cf3ca34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 200
+--- !u!58 &487063734
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487063730}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.105
+--- !u!50 &487063735
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487063730}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &512600133
 GameObject:
   m_ObjectHideFlags: 0
@@ -3815,6 +3868,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   platform: {fileID: 283349763}
+  crowBar:
+    serializedVersion: 2
+    m_Bits: 16384
+  isCrowBar: 0
 --- !u!50 &596458893
 Rigidbody2D:
   serializedVersion: 4
@@ -3834,7 +3891,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &596458894
 BoxCollider2D:
@@ -19333,8 +19390,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1966006336}
   - component: {fileID: 1966006338}
-  - component: {fileID: 1966006337}
-  - component: {fileID: 1966006339}
   - component: {fileID: 1966006340}
   - component: {fileID: 1966006341}
   m_Layer: 0
@@ -19359,32 +19414,6 @@ Transform:
   m_Father: {fileID: 193149580}
   m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1966006337
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966006335}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.21, y: 0.26}
-    newSize: {x: 0.21, y: 0.26}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 1
-  serializedVersion: 2
-  m_Size: {x: 0.21, y: 0.26}
-  m_EdgeRadius: 0
 --- !u!212 &1966006338
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19433,27 +19462,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &1966006339
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966006335}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.2
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 9.8
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &1966006340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19479,7 +19487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crowBar: {fileID: 487063730}
-  throwRate: 0.5
+  throwRate: 1
   nextCrowBar: 0
 --- !u!1 &1977263234
 GameObject:

@@ -7,11 +7,11 @@ public class CrowBar : MonoBehaviour
     [SerializeField]
     GameObject crowBar;
 
-    public float throwRate;
+    public float throwRate; 
     public float nextCrowBar;
+
     void Start()
     {
-        throwRate = 1f;
         nextCrowBar = Time.time;
     }
     
@@ -20,12 +20,12 @@ public class CrowBar : MonoBehaviour
         throwNewCrowBar();
     }
 
-    void throwNewCrowBar()
+    void throwNewCrowBar() // throws next crow bar base on time
     {
         if(Time.time > nextCrowBar)
         {
             Instantiate(crowBar, transform.position, Quaternion.identity);
-            nextCrowBar = Time.time + throwRate;
+            nextCrowBar = Time.time + throwRate; // base on throw rate
         }
     }
 }

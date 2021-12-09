@@ -13791,7 +13791,16 @@ MonoBehaviour:
   mainCamera: {fileID: 508299836}
   secondCamera: {fileID: 1772507827}
   threeCamera: {fileID: 1645774314}
+  isGameOver: 0
   nextLevel: {fileID: 1976863905}
+  gameOver:
+    serializedVersion: 2
+    m_Bits: 0
+  platform: {fileID: 164291896}
+  crowBar:
+    serializedVersion: 2
+    m_Bits: 0
+  isCrowBar: 0
 --- !u!50 &1131097845
 Rigidbody2D:
   serializedVersion: 4

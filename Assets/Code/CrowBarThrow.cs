@@ -8,9 +8,9 @@ public class CrowBarThrow : MonoBehaviour
     GameObject player;
     float speed = 5.0f; // speed of crowbar
     Rigidbody rb;
-
     PlayerMovement target; // player is the target
     Vector2 moveDirection;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -20,11 +20,10 @@ public class CrowBarThrow : MonoBehaviour
         Destroy(gameObject, 10f); // disappear if it never hits
     }
 
-    void onTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.gameObject.name.Equals("Player"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2); // game over
-        }
+        
+
     }
+ 
 }

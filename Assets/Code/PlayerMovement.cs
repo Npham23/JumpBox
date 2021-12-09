@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     //========= Setting Variables =============
+    [SerializeField]
 
     public GameObject Player;
     private Rigidbody2D rb;
@@ -65,6 +66,13 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject platform;
 
+    //Crow Bar
+
+    public LayerMask crowBar;
+    public bool isCrowBar = false;
+
+
+
     void Start()
     {
         switchToMainCamera();
@@ -108,6 +116,14 @@ public class PlayerMovement : MonoBehaviour
 
         isGameOver = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
        new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), gameOver);
+
+        isCrowBar = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
+       new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), crowBar);
+
+        if (isCrowBar)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2); // game over
+        }
 
 
         if (isUpper) 

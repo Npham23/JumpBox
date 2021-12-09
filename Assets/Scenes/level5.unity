@@ -13655,6 +13655,11 @@ MonoBehaviour:
   gameOver:
     serializedVersion: 2
     m_Bits: 16384
+  platform: {fileID: 2071673490}
+  crowBar:
+    serializedVersion: 2
+    m_Bits: 0
+  isCrowBar: 0
 --- !u!50 &1027108751
 Rigidbody2D:
   serializedVersion: 4
