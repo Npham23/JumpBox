@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     // Next level
     public GameObject nextLevel;
 
+
     void Start()
     {
         switchToMainCamera();
@@ -74,11 +75,12 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal"); // moving on the x axis, basic player movement
 
+
     }   
 
     void Update()
     {
-
+        
 
         // checks if the player is grounded within a certain radius
         isGrounded = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.4f, transform.position.y - 0.5f),
@@ -151,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(isGrounded == false)
         {
+
             speed = startingSpeed; //resetting speed
             landSound = true; // reset it to true so when the player is in the air, it will play the sound upon impact
         }
@@ -178,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
         // checks if the player is holding space bar which charges the jump value
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
-
+            Player.transform.parent = transform;
             jumpValue += 0.8f; // vertical
             rb.velocity = new Vector2(0.0f, rb.velocity.y); // effect the y axis only
             if (jumpValue >= maxJump) // never exceed the max jump value
