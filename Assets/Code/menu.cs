@@ -72,6 +72,11 @@ public class menu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 7);
     }
+    public void backToMainMenu8() // For Level 3 to go back to main menu
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 8);
+    }
+
 
     public void quitGame() // For Level 3 to go back to main menu
     {
