@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -41,30 +42,70 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource jumpSound;
     public AudioSource landingSound;
     public AudioSource bouncingSound;
+    public AudioSource victroySound;
     private bool landSound = false;
+    bool playVictroySoundOnce = true;
 
     // Changing Cameras
+    public LayerMask upperCamera;
+    public LayerMask lowerCamera;
+    public bool isUpper = false;
+    public bool isLower = true;
     public Camera mainCamera;
     public Camera secondCamera;
-
+    
+    // Next level
+    public GameObject nextLevel;
 
     void Start()
     {
-
+        switchToMainCamera();
         // starts player direction right side
         right = true;
         // for changes in position x y
         rb = GetComponent<Rigidbody2D>();
+        nextLevel.SetActive(false); // hide button
     }
 
     private void FixedUpdate()
     {
         moveInput = Input.GetAxis("Horizontal"); // moving on the x axis, basic player movement
 
-    }
+    }   
 
     void Update()
     {
+
+
+        // checks if the player is grounded within a certain radius
+        isGrounded = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.4f, transform.position.y - 0.5f),
+        new Vector2(transform.position.x + 0.4f, transform.position.y - 0.5f), groundMask);
+
+        // checks if the player is touching the wall within a certain radius
+        isAWall = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.35f, transform.position.y - 0.5f),
+        new Vector2(transform.position.x + 0.35f, transform.position.y - 0.5f), wallMask);
+
+        isVictory = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
+        new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), winMask);
+
+        isUpper = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
+        new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), upperCamera);
+
+        isLower = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
+        new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), lowerCamera);
+
+        if (isUpper) // feature :)
+        {
+            switchToSecondCamera();
+          
+        }
+
+        if (isLower)
+        {
+            switchToMainCamera();
+ 
+        }
+
         // moving cameras, Q goes down and E goes up
         if (Input.GetKey(KeyCode.E))
         {
@@ -75,25 +116,21 @@ public class PlayerMovement : MonoBehaviour
             switchToMainCamera();
         }
 
-        // checks if the player is grounded within a certain radius
-        isGrounded = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.2f, transform.position.y - 0.5f),
-        new Vector2(transform.position.x + 0.2f, transform.position.y - 0.5f), groundMask);
 
-        // checks if the player is touching the wall within a certain radius
-        isAWall = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.35f, transform.position.y - 0.5f),
-        new Vector2(transform.position.x + 0.35f, transform.position.y - 0.5f), wallMask);
 
-        isVictory = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
-        new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), winMask);
-
-        if(isVictory)
+        if (isVictory)
         {
-        
-                createFirework();
-
+            if(playVictroySoundOnce)
+            {
+                victroySound.Play();
+                playVictroySoundOnce = false;
+            }
             
+            createFirework();
+            nextLevel.SetActive(true); // show the button to the next level
         }
 
+        
 
         if (isAWall) // if the player touches the wall
         {

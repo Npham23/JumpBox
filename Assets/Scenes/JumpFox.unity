@@ -847,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ec450013b7bde4f853cb289b4864b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   jumpValue: 10
   startingJump: 10
   startingSpeed: 5
@@ -870,6 +871,16 @@ MonoBehaviour:
   jumpSound: {fileID: 904240626}
   landingSound: {fileID: 119735392}
   bouncingSound: {fileID: 225837491}
+  upperCamera:
+    serializedVersion: 2
+    m_Bits: 2048
+  lowerCamera:
+    serializedVersion: 2
+    m_Bits: 4096
+  isUpper: 1
+  isLower: 1
+  mainCamera: {fileID: 519420031}
+  secondCamera: {fileID: 519420031}
 --- !u!60 &429100510
 PolygonCollider2D:
   m_ObjectHideFlags: 0
