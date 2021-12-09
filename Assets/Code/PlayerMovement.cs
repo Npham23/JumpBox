@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask gameOver;
 
+    public GameObject platform;
 
     void Start()
     {
@@ -141,7 +142,8 @@ public class PlayerMovement : MonoBehaviour
                 victroySound.Play();
                 playVictroySoundOnce = false;
             }
-            
+            platform.SetActive(false);
+
             createFirework();
             nextLevel.SetActive(true); // show the button to the next level
         }
