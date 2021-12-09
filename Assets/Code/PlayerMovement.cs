@@ -49,11 +49,14 @@ public class PlayerMovement : MonoBehaviour
     // Changing Cameras
     public LayerMask upperCamera;
     public LayerMask lowerCamera;
+    public LayerMask thirdCamera;
     public bool isUpper = false;
     public bool isLower = true;
+    public bool isThirdCamera = false;
     public Camera mainCamera;
     public Camera secondCamera;
-    
+    public Camera threeCamera;
+
     // Next level
     public GameObject nextLevel;
 
@@ -94,7 +97,10 @@ public class PlayerMovement : MonoBehaviour
         isLower = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
         new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), lowerCamera);
 
-        if (isUpper) // feature :)
+        isThirdCamera = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.5f, transform.position.y - 0.5f),
+       new Vector2(transform.position.x + 0.5f, transform.position.y - 0.5f), thirdCamera);
+
+        if (isUpper) 
         {
             switchToSecondCamera();
           
@@ -106,19 +112,14 @@ public class PlayerMovement : MonoBehaviour
  
         }
 
-        // moving cameras, Q goes down and E goes up
-        if (Input.GetKey(KeyCode.E))
+        if (isThirdCamera)
         {
-            switchToSecondCamera();
-        }
-        else if (Input.GetKey(KeyCode.Q))
-        {
-            switchToMainCamera();
+            switchToThirdCamera();
+
         }
 
 
-
-        if (isVictory)
+            if (isVictory)
         {
             if(playVictroySoundOnce)
             {
@@ -267,12 +268,21 @@ public class PlayerMovement : MonoBehaviour
     {
         mainCamera.enabled = false;
         secondCamera.enabled = true;
+        threeCamera.enabled = false;
     }
 
     private void switchToMainCamera()
     {
         mainCamera.enabled = true;
         secondCamera.enabled = false;
+        threeCamera.enabled = false;
+    }
+
+    private void switchToThirdCamera()
+    {
+        mainCamera.enabled = false;
+        secondCamera.enabled = false;
+        threeCamera.enabled = true;
     }
 
 }
